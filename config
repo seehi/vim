@@ -1,0 +1,24 @@
+#!/bin/bash
+
+:<<EOF
+  1. copy .vim and .vimrc to your ~
+  2. clone vundle
+  3. install bundle
+EOF
+
+cmds=(
+  "cp -r `pwd`/.vim `pwd`/.vimrc $HOME"
+  "git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle"
+  "vim +BundleInstall +qall"
+)
+
+execIt(){
+  echo "################################### STEP $1 ###################################"
+  echo "$2"
+  $2
+}
+
+for i in "${!cmds[@]}"
+do
+  execIt $i "${cmds[$i]}"
+done
